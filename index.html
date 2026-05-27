@@ -1442,18 +1442,9 @@
   </div>
 
   <!-- COUNTDOWN BAR -->
-  <div class="countdown-bar">
-    <span class="countdown-label">Drop closes in</span>
-    <div class="countdown-timer">
-      <div class="cd-unit"><span class="cd-num" id="cd-days">07</span><span class="cd-unit-label">Days</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-unit-label">Hours</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-unit-label">Mins</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-unit-label">Secs</span></div>
-    </div>
-    <span class="countdown-label" style="color:white; font-size:13px;">Limited Pieces Remaining</span>
+  <div class="countdown-bar" style="justify-content:center; gap:30px;">
+    <span style="font-family:'Anton',sans-serif; font-size:clamp(28px,5vw,52px); color:white; letter-spacing:8px;">COMING SOON</span>
+    <span style="font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:5px; color:var(--gray); text-transform:uppercase; align-self:center;">DROP 01 — I AM ART</span>
   </div>
 
   <!-- STORY SECTION -->
@@ -1791,21 +1782,7 @@
       ring.style.top = ry - 18 + 'px';
     }, 16);
 
-    // Countdown — 7 days from now
-    const end = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-    function updateCD() {
-      const diff = end - Date.now();
-      if (diff <= 0) return;
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
-      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
-      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
-    }
-    updateCD(); setInterval(updateCD, 1000);
+    // Coming Soon mode — countdown removed
 
     // Size select
     function selectSize(btn) {
