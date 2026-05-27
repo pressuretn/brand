@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRESSURE® — DROP 01 : I AM ART</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray: #888888;
+      --lgray: #cccccc;
+      --dark1: #0a0a0a;
+      --dark2: #111111;
+      --dark3: #1a1a1a;
+      --red: #e00000;
+      --accent: #ffffff;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.15s ease;
+      mix-blend-mode: difference;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent);
+    }
+
+    .nav-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+      letter-spacing: 4px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      font-size: 11px;
+      vertical-align: super;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, #1a1a1a 0%, #000 70%);
+    }
+
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    .hero-line {
+      position: absolute;
+      width: 1px;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, white, transparent);
+      top: 0;
+      left: 50%;
+      animation: lineDrop 2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes lineDrop {
+      0% {
+        opacity: 0;
+        transform: scaleY(0) translateY(-50%)
+      }
+
+      100% {
+        opacity: 0.3;
+        transform: scaleY(1) translateY(0)
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      animation: fadeUp 1s ease 0.3s both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .hero-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 6px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(72px, 14vw, 160px);
+      line-height: 0.88;
+      letter-spacing: -2px;
+      color: white;
+      display: block;
+    }
+
+    .hero-title-small {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(16px, 3vw, 28px);
+      font-weight: 300;
+      letter-spacing: 12px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-top: 16px;
+      display: block;
+    }
+
+    .hero-quote {
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--gray);
+      font-style: italic;
+      letter-spacing: 1px;
+      max-width: 380px;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      margin-top: 48px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border: none;
+      cursor: none;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+    }
+
+    .btn-primary:hover {
+      background: var(--lgray);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: white;
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp 1s ease 1.2s both;
+    }
+
+    .hero-scroll span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, white, transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scaleY(0.5)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1)
+      }
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      overflow: hidden;
+      background: white;
+      padding: 14px 0;
+      border-top: none;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      font-family: 'Anton', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: black;
+      padding: 0 30px;
+      text-transform: uppercase;
+    }
+
+    .marquee-dot {
+      color: var(--red);
+      padding: 0 6px;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* SECTION SHARED */
+    section {
+      padding: 100px 40px;
+    }
+
+    .section-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 6px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    /* STORY SECTION */
+    .story {
+      background: var(--dark1);
+    }
+
+    .story-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-text p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--lgray);
+      margin-bottom: 20px;
+    }
+
+    .story-text p strong {
+      color: white;
+    }
+
+    .story-img {
+      position: relative;
+    }
+
+    .story-img img {
+      width: 100%;
+      display: block;
+      filter: grayscale(10%) contrast(1.05);
+    }
+
+    .story-img::before {
+      content: 'I AM ART';
+      font-family: 'Anton', sans-serif;
+      font-size: 80px;
+      color: white;
+      opacity: 0.04;
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      line-height: 1;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .story-numbers {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .story-num h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 40px;
+      color: white;
+    }
+
+    .story-num p {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin: 0 !important;
+    }
+
+    /* PRODUCT SECTION */
+    .product {
+      background: var(--black);
+    }
+
+    .product-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
+    }
+
+    .product-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark3);
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .product-img-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: white;
+      color: black;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+    }
+
+    .product-info {
+      padding-top: 20px;
+    }
+
+    .product-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .product-collection {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      display: block;
+    }
+
+    .product-price {
+      font-family: 'Anton', sans-serif;
+      font-size: 52px;
+      color: white;
+      margin-bottom: 30px;
+      display: block;
+    }
+
+    .product-price sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      vertical-align: middle;
+      color: var(--gray);
+      letter-spacing: 2px;
+      margin-left: 4px;
+    }
+
+    .product-desc {
+      font-size: 14px;
+      color: var(--lgray);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .size-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .sizes {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .size-btn {
+      width: 48px;
+      height: 48px;
+      border: 1px solid #333;
+      background: transparent;
+      color: white;
+      cursor: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+
+    .size-btn:hover,
+    .size-btn.active {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    .product-specs {
+      border-top: 1px solid #1f1f1f;
+      padding-top: 24px;
+      margin-top: 10px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #111;
+      font-size: 13px;
+    }
+
+    .spec-row span:first-child {
+      color: var(--gray);
+      letter-spacing: 1px;
+    }
+
+    .spec-row span:last-child {
+      color: white;
+      font-weight: 500;
+    }
+
+    /* PREORDER SECTION */
+    .preorder {
+      background: var(--dark2);
+      text-align: center;
+    }
+
+    .preorder-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .preorder-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 0.9;
+      margin-bottom: 24px;
+    }
+
+    .preorder-sub {
+      font-size: 14px;
+      color: var(--lgray);
+      line-height: 1.9;
+      margin-bottom: 48px;
+    }
+
+    .preorder-steps {
+      display: flex;
+      gap: 0;
+      margin-bottom: 56px;
+      border: 1px solid #222;
+    }
+
+    .step {
+      flex: 1;
+      padding: 28px 20px;
+      border-right: 1px solid #222;
+      text-align: center;
+    }
+
+    .step:last-child {
+      border-right: none;
+    }
+
+    .step-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 32px;
+      color: white;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .step-text {
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: 1px;
+      line-height: 1.6;
+    }
+
+    .preorder-form {
+      text-align: left;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select {
+      background: #0f0f0f;
+      border: 1px solid #2a2a2a;
+      color: white;
+      padding: 14px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      outline: none;
+      cursor: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: white;
+    }
+
+    .form-group select option {
+      background: #111;
+    }
+
+    .form-full {
+      grid-column: 1/-1;
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 16px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* COUNTDOWN */
+    .countdown-bar {
+      background: var(--dark3);
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .countdown-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .countdown-timer {
+      display: flex;
+      gap: 20px;
+    }
+
+    .cd-unit {
+      text-align: center;
+    }
+
+    .cd-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 36px;
+      color: white;
+      display: block;
+    }
+
+    .cd-unit-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .cd-sep {
+      font-family: 'Anton', sans-serif;
+      font-size: 36px;
+      color: #333;
+      line-height: 1;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      border-top: 1px solid #111;
+      padding: 60px 40px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #111;
+    }
+
+    .footer-brand .footer-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+      letter-spacing: 4px;
+      color: white;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.8;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      font-size: 14px;
+      color: var(--lgray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 30px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 10px;
+    }
+
+    .pm {
+      background: #111;
+      border: 1px solid #222;
+      padding: 6px 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--lgray);
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      color: black;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    /* ANIMATIONS ON SCROLL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 70px 20px;
+      }
+
+      .story-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .product-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .product-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .preorder-steps {
+        flex-direction: column;
+      }
+
+      .step {
+        border-right: none;
+        border-bottom: 1px solid #222;
+      }
+
+      .step:last-child {
+        border-bottom: none;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .countdown-bar {
+        gap: 20px;
+      }
+
+      .story-numbers {
+        gap: 20px;
+      }
+
+      body {
+        cursor: auto;
+      }
+
+      .cursor,
+      .cursor-ring {
+        display: none;
+      }
+    }
+
+    /* ── MUSIC PLAYER ────────────────────────────── */
+    .music {
+      background: var(--black);
+      padding: 80px 40px;
+      border-top: 1px solid #111;
+    }
+
+    .music-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .music-header {
+      margin-bottom: 48px;
+    }
+
+    .track-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .track {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 24px;
+      background: var(--dark2);
+      border: 1px solid #1a1a1a;
+      transition: all 0.2s;
+      cursor: none;
+    }
+
+    .track:hover {
+      background: var(--dark3);
+      border-color: #333;
+    }
+
+    .track.playing {
+      background: white;
+      border-color: white;
+    }
+
+    .track.playing .track-num,
+    .track.playing .track-name,
+    .track.playing .track-duration {
+      color: black;
+    }
+
+    .track.playing .track-vibe {
+      color: #555;
+    }
+
+    .track-play-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      background: transparent;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      font-size: 12px;
+    }
+
+    .track:hover .track-play-btn {
+      border-color: white;
+    }
+
+    .track.playing .track-play-btn {
+      background: black;
+      border-color: black;
+      color: white;
+    }
+
+    .track-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 13px;
+      color: #333;
+      width: 24px;
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+
+    .track-info {
+      flex: 1;
+    }
+
+    .track-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: white;
+      transition: color 0.2s;
+    }
+
+    .track-vibe {
+      font-size: 11px;
+      color: var(--gray);
+      letter-spacing: 1px;
+      margin-top: 3px;
+      transition: color 0.2s;
+    }
+
+    .track-duration {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: 2px;
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+
+    .track-progress {
+      width: 100px;
+      height: 2px;
+      background: #222;
+      flex-shrink: 0;
+    }
+
+    .track-progress-fill {
+      height: 100%;
+      background: white;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .track.playing .track-progress {
+      background: #aaa;
+    }
+
+    .track.playing .track-progress-fill {
+      background: black;
+    }
+
+    .eq {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .eq-bar {
+      width: 3px;
+      background: black;
+      border-radius: 1px;
+      animation: eqAnim 0.6s ease infinite alternate;
+    }
+
+    .eq-bar:nth-child(1) {
+      height: 5px;
+      animation-delay: 0s;
+    }
+
+    .eq-bar:nth-child(2) {
+      height: 12px;
+      animation-delay: 0.15s;
+    }
+
+    .eq-bar:nth-child(3) {
+      height: 7px;
+      animation-delay: 0.3s;
+    }
+
+    .eq-bar:nth-child(4) {
+      height: 14px;
+      animation-delay: 0.08s;
+    }
+
+    @keyframes eqAnim {
+      from {
+        transform: scaleY(0.2)
+      }
+
+      to {
+        transform: scaleY(1)
+      }
+    }
+
+    .eq.paused .eq-bar {
+      animation-play-state: paused;
+      transform: scaleY(0.3);
+    }
+
+    /* Global player bar */
+    .player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.97);
+      border-top: 1px solid #222;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      z-index: 300;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+      backdrop-filter: blur(20px);
+    }
+
+    .player-bar.active {
+      transform: translateY(0);
+    }
+
+    .player-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .player-track-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-brand {
+      font-size: 10px;
+      color: var(--gray);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .ctrl-btn {
+      background: transparent;
+      border: none;
+      color: var(--gray);
+      cursor: none;
+      font-size: 15px;
+      transition: color 0.2s;
+      padding: 4px;
+    }
+
+    .ctrl-btn:hover {
+      color: white;
+    }
+
+    .ctrl-btn.main {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid white;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .ctrl-btn.main:hover {
+      background: white;
+      color: black;
+    }
+
+    .player-timeline {
+      flex: 1;
+      max-width: 280px;
+    }
+
+    .timeline-bar {
+      height: 2px;
+      background: #333;
+      cursor: none;
+    }
+
+    .timeline-fill {
+      height: 100%;
+      background: white;
+      width: 0%;
+    }
+
+    .timeline-times {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--gray);
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    .player-vol {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .vol-icon {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .vol-slider {
+      -webkit-appearance: none;
+      width: 70px;
+      height: 2px;
+      background: #333;
+      outline: none;
+      cursor: none;
+    }
+
+    .vol-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: white;
+      cursor: none;
+    }
+
+    /* Autoplay overlay */
+    .ap-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9997;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      backdrop-filter: blur(12px);
+      cursor: none;
+      transition: opacity 0.7s ease;
+    }
+
+    .ap-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .ap-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(42px, 8vw, 72px);
+      color: white;
+      letter-spacing: 6px;
+    }
+
+    .ap-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 6px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .ap-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, white, transparent);
+      margin: 6px 0;
+    }
+
+    .ap-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      background: white;
+      color: black;
+      border: none;
+      padding: 18px 52px;
+      cursor: none;
+      margin-top: 8px;
+      transition: transform 0.2s;
+    }
+
+    .ap-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .ap-note {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #444;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    @media(max-width:768px) {
+      .player-bar {
+        padding: 12px 16px;
+        gap: 12px;
+      }
+
+      .player-timeline {
+        display: none;
+      }
+
+      .player-vol {
+        display: none;
+      }
+
+      .track-progress {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">PRESSURE<span>®</span></a>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#drop">Drop 01</a></li>
+      <li><a href="#music">The Sound</a></li>
+      <li><a href="#preorder">Pre-Order</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-line"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Drop 01 — Now Available</span>
+      <span class="hero-title">I AM<br />ART</span>
+      <span class="hero-title-small">by PRESSURE®</span>
+      <p class="hero-quote">"Some people are artists.<br />Some themselves are art."</p>
+      <div class="hero-cta">
+        <a href="#preorder" class="btn btn-primary">Pre-Order Now</a>
+        <a href="#drop" class="btn btn-outline">View Drop</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">PRESSURE®</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">DROP 01</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">I AM ART</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">LIMITED EDITION</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">BLACK ONLY</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">TUNISIAN BRAND</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">PRESSURE®</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">DROP 01</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">I AM ART</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">LIMITED EDITION</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">BLACK ONLY</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">TUNISIAN BRAND</span><span class="marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN BAR -->
+  <div class="countdown-bar">
+    <span class="countdown-label">Drop closes in</span>
+    <div class="countdown-timer">
+      <div class="cd-unit"><span class="cd-num" id="cd-days">07</span><span class="cd-unit-label">Days</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-unit-label">Hours</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-unit-label">Mins</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-unit-label">Secs</span></div>
+    </div>
+    <span class="countdown-label" style="color:white; font-size:13px;">Limited Pieces Remaining</span>
+  </div>
+
+  <!-- STORY SECTION -->
+  <section class="story" id="story">
+    <div class="story-inner">
+      <div class="story-text reveal">
+        <span class="section-tag">Our story</span>
+        <h2 class="section-title">Born from<br />pressure.</h2>
+        <p>PRESSURE® is a Tunisian streetwear brand that was born from a simple but powerful idea — <strong>art is not
+            only something you hang on a wall.</strong></p>
+        <p>Sometimes, the person themselves is the art. Their energy, their way of moving through the world, the way
+          they carry themselves. That is PRESSURE®.</p>
+        <p>Every drop is <strong>limited.</strong> Every piece is <strong>intentional.</strong> This is not fast fashion
+          — this is identity, stitched in black.</p>
+        <div class="story-numbers">
+          <div class="story-num">
+            <h3>01</h3>
+            <p>First Drop</p>
+          </div>
+          <div class="story-num">
+            <h3>∞</h3>
+            <p>Identity</p>
+          </div>
+          <div class="story-num">
+            <h3>TN</h3>
+            <p>Origin</p>
+          </div>
+        </div>
+      </div>
+      <div class="story-img reveal">
+        <img src="pressurepdp.png" alt="PRESSURE Brand" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SECTION -->
+  <section class="product" id="drop">
+    <div class="product-inner">
+      <div class="product-header">
+        <div>
+          <span class="section-tag">Drop 01 — I Am Art</span>
+          <h2 class="section-title">Black<br />Edition.</h2>
+        </div>
+        <span
+          style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;">Cropped
+          Short Sleeve T-Shirt</span>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img-wrap reveal">
+          <img src="blackk.png" alt="PRESSURE Black Tee" />
+          <div class="product-badge">Limited Drop</div>
+        </div>
+
+        <div class="product-info reveal">
+          <h3 class="product-name">CROPPED<br />T-SHIRT</h3>
+          <span class="product-collection">PRESSURE® — Drop 01 : I Am Art</span>
+          <span class="product-price">80 <sub>DT</sub></span>
+
+          <p class="product-desc">
+            Oversized cropped silhouette. Bold ART typography on the back.
+            Pressure script on the front. This is not just a t-shirt —
+            it is a statement.
+          </p>
+
+          <span class="size-label">Select Size</span>
+          <div class="sizes">
+            <button class="size-btn" onclick="selectSize(this)">S</button>
+            <button class="size-btn" onclick="selectSize(this)">M</button>
+            <button class="size-btn active" onclick="selectSize(this)">L</button>
+
+          </div>
+
+          <a href="#preorder" class="btn btn-primary"
+            style="width:100%;text-align:center;display:block;margin-bottom:12px;">Pre-Order Now — 80 DT</a>
+          <a href="https://instagram.com/pressure.t11" class="btn btn-outline"
+            style="width:100%;text-align:center;display:block;" target="_blank">Follow @pressure.t11</a>
+
+          <div class="product-specs">
+            <div class="spec-row"><span>Material</span><span>100% Cotton</span></div>
+            <div class="spec-row"><span>Fit</span><span>Oversized / Cropped</span></div>
+            <div class="spec-row"><span>Colors</span><span>Black / White print</span></div>
+            <div class="spec-row"><span>Availability</span><span>Pre-Order Only</span></div>
+            <div class="spec-row"><span>Delivery</span><span>2–3 weeks</span></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── MUSIC SECTION ───────────────────────────── -->
+  <section class="music" id="music">
+    <div class="music-inner">
+      <div class="music-header reveal">
+        <span class="section-tag">The Vibe</span>
+        <h2 class="section-title">THE<br />SOUND.</h2>
+      </div>
+      <div class="track-list reveal">
+
+        <div class="track" id="track-0" onclick="playTrack(0)">
+          <button class="track-play-btn" id="btn-0">&#9654;</button>
+          <span class="track-num">01</span>
+          <div class="track-info">
+            <div class="track-name">Rottweiler</div>
+            <div class="track-vibe">Rushy &bull; Hip-Hop / Rap</div>
+          </div>
+          <div class="eq paused" id="eq-0">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+          </div>
+          <div class="track-progress">
+            <div class="track-progress-fill" id="prog-0"></div>
+          </div>
+          <span class="track-duration" id="dur-0">—:——</span>
+          <audio id="audio-0" src="Rottweiler (320).mp3" preload="metadata"></audio>
+        </div>
+
+        <div class="track" id="track-1" onclick="playTrack(1)">
+          <button class="track-play-btn" id="btn-1">&#9654;</button>
+          <span class="track-num">02</span>
+          <div class="track-info">
+            <div class="track-name">PRESSURE®</div>
+            <div class="track-vibe">Trap &bull; Street</div>
+          </div>
+          <div class="eq paused" id="eq-1">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+          </div>
+          <div class="track-progress">
+            <div class="track-progress-fill" id="prog-1"></div>
+          </div>
+          <span class="track-duration" id="dur-1">—:——</span>
+          <audio id="audio-1" src="Rushy - Pressure [Music Video] [YnGrs5SmsVE].mp3" preload="metadata"></audio>
+        </div>
+
+        <div class="track" id="track-2" onclick="playTrack(2)">
+          <button class="track-play-btn" id="btn-2">&#9654;</button>
+          <span class="track-num">03</span>
+          <div class="track-info">
+            <div class="track-name">MIST</div>
+            <div class="track-vibe">Drill &bull; Trap</div>
+          </div>
+          <div class="eq paused" id="eq-2">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+          </div>
+          <div class="track-progress">
+            <div class="track-progress-fill" id="prog-2"></div>
+          </div>
+          <span class="track-duration" id="dur-2">—:——</span>
+          <audio id="audio-2" src="Mist (320).mp3" preload="metadata"></audio>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GLOBAL PLAYER BAR ──────────────────────── -->
+  <div class="player-bar" id="playerBar">
+    <div class="player-info">
+      <div class="player-track-name" id="barTitle">PRESSURE® — THE SOUND</div>
+      <div class="player-brand">DROP 01 — I AM ART</div>
+    </div>
+    <div class="player-controls">
+      <button class="ctrl-btn" onclick="prevTrack()" title="Previous">&#9664;&#9664;</button>
+      <button class="ctrl-btn main" id="mainBtn" onclick="togglePlay()">&#9654;</button>
+      <button class="ctrl-btn" onclick="nextTrack()" title="Next">&#9654;&#9654;</button>
+    </div>
+    <div class="player-timeline">
+      <div class="timeline-bar">
+        <div class="timeline-fill" id="timelineFill"></div>
+      </div>
+      <div class="timeline-times">
+        <span id="curTime">0:00</span>
+        <span id="totTime">0:00</span>
+      </div>
+    </div>
+    <div class="player-vol">
+      <span class="vol-icon">&#128266;</span>
+      <input type="range" class="vol-slider" id="volSlider" min="0" max="1" step="0.05" value="1"
+        oninput="setVol(this.value)" />
+    </div>
+  </div>
+
+  <!-- ── AUTOPLAY OVERLAY ───────────────────────── -->
+  <div class="ap-overlay" id="apOverlay">
+    <div class="ap-logo">PRESSURE®</div>
+    <div class="ap-sub">Drop 01 — I Am Art</div>
+    <div class="ap-line"></div>
+    <button class="ap-btn" id="enterBtn">&#9654;&nbsp; ENTER — PLAY</button>
+    <div class="ap-note">🎵 Turn sound on for the full experience</div>
+  </div>
+
+  <!-- PRE-ORDER SECTION -->
+  <section class="preorder" id="preorder">
+    <div class="preorder-inner">
+      <span class="section-tag">Pre-Order Now</span>
+      <h2 class="preorder-title">SECURE<br />YOUR<br />PIECE.</h2>
+      <p class="preorder-sub">
+        Limited quantities. Once it's gone, it's gone.<br />
+        Fill the form below and we'll contact you within 24 hours<br />
+        with payment details to confirm your order.
+      </p>
+
+      <div class="preorder-steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <span class="step-text">Fill the form below</span>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <span class="step-text">We DM you on Instagram</span>
+        </div>
+
+        <div class="step">
+          <span class="step-num">03</span>
+          <span class="step-text">Receive in 2–3 weeks</span>
+        </div>
+      </div>
+      <form class="preorder-form" action="https://formspree.io/f/mqenvlno" method="POST">
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="full_name" placeholder="Your name" required />
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="+216 XX XXX XXX" required />
+          </div>
+
+          <div class="form-group">
+            <label>Instagram Username</label>
+            <input type="text" name="instagram" placeholder="@username" required />
+          </div>
+
+          <div class="form-group">
+            <label>City / Wilaya</label>
+            <input type="text" name="city" placeholder="Your city" required />
+          </div>
+
+          <div class="form-group">
+            <label>Size</label>
+            <select name="size" required>
+              <option value="" disabled selected>Select size</option>
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Quantity</label>
+            <select name="quantity" required>
+              <option value="" disabled selected>Qty</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;font-size:13px;padding:18px;">
+          Submit Pre-Order — 80 DT / piece
+        </button>
+
+        <p class="form-note">
+          By submitting, you agree to pay a 50% advance to confirm your order.<br />
+          Payment via D17 · Sobflous · Virement
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">PRESSURE®</span>
+        <p>A Tunisian streetwear brand built on identity, limited drops, and the belief that some people themselves are
+          art.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#drop">Drop 01</a></li>
+          <li><a href="#music">The Sound</a></li>
+          <li><a href="#preorder">Pre-Order</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://instagram.com/pressure.t11" target="_blank">@pressure.t11</a></li>
+          <li><a href="mailto:pressure.tn@gmail.com">pressure.tn@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 PRESSURE® — All rights reserved. Tunisia.</span>
+      <div class="payment-methods">
+        <span class="pm">D17</span>
+        <span class="pm">Sobflous</span>
+        <span class="pm">Virement</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">✓ Pre-order received — we'll DM you soon!</div>
+
+  <script>
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx - 6 + 'px';
+      cursor.style.top = my - 6 + 'px';
+    });
+    setInterval(() => {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx - 18 + 'px';
+      ring.style.top = ry - 18 + 'px';
+    }, 16);
+
+    // Countdown — 7 days from now
+    const end = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    function updateCD() {
+      const diff = end - Date.now();
+      if (diff <= 0) return;
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+    updateCD(); setInterval(updateCD, 1000);
+
+    // Size select
+    function selectSize(btn) {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Form submit
+    function submitOrder(e) {
+      e.preventDefault();
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+      e.target.reset();
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── MUSIC PLAYER ──────────────────────────────
+    const TRACKS = [
+      { id: 0, title: 'PRESSURE' },
+      { id: 1, title: 'MIST' },
+      { id: 2, title: 'ROTTWEILER' },
+    ];
+    let current = -1, isPlaying = false;
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) return '0:00';
+      return Math.floor(s / 60) + ':' + (Math.floor(s % 60) < 10 ? '0' : '') + Math.floor(s % 60);
+    }
+
+    TRACKS.forEach(t => {
+      const a = document.getElementById('audio-' + t.id);
+      a.addEventListener('loadedmetadata', () => {
+        document.getElementById('dur-' + t.id).textContent = fmt(a.duration);
+      });
+      a.addEventListener('timeupdate', () => {
+        if (current !== t.id) return;
+        const pct = (a.currentTime / a.duration * 100) || 0;
+        document.getElementById('prog-' + t.id).style.width = pct + '%';
+        document.getElementById('timelineFill').style.width = pct + '%';
+        document.getElementById('curTime').textContent = fmt(a.currentTime);
+        document.getElementById('totTime').textContent = fmt(a.duration);
+      });
+      a.addEventListener('ended', () => nextTrack());
+    });
+
+    function stopAll() {
+      TRACKS.forEach(t => {
+        const a = document.getElementById('audio-' + t.id);
+        a.pause(); a.currentTime = 0;
+        document.getElementById('track-' + t.id).classList.remove('playing');
+        document.getElementById('btn-' + t.id).innerHTML = '&#9654;';
+        document.getElementById('eq-' + t.id).classList.add('paused');
+        document.getElementById('prog-' + t.id).style.width = '0%';
+      });
+    }
+
+    function playTrack(id) {
+      if (current === id && isPlaying) { pauseCurrent(); return; }
+      stopAll();
+      current = id;
+      const a = document.getElementById('audio-' + id);
+      a.play().catch(() => { });
+      isPlaying = true;
+      document.getElementById('track-' + id).classList.add('playing');
+      document.getElementById('btn-' + id).innerHTML = '&#9646;&#9646;';
+      document.getElementById('eq-' + id).classList.remove('paused');
+      document.getElementById('mainBtn').innerHTML = '&#9646;&#9646;';
+      document.getElementById('barTitle').textContent = TRACKS[id].title;
+      document.getElementById('playerBar').classList.add('active');
+    }
+
+    function pauseCurrent() {
+      if (current < 0) return;
+      document.getElementById('audio-' + current).pause();
+      isPlaying = false;
+      document.getElementById('btn-' + current).innerHTML = '&#9654;';
+      document.getElementById('eq-' + current).classList.add('paused');
+      document.getElementById('mainBtn').innerHTML = '&#9654;';
+    }
+
+    function togglePlay() {
+      if (current < 0) { playTrack(0); return; }
+      if (isPlaying) pauseCurrent();
+      else {
+        document.getElementById('audio-' + current).play().catch(() => { });
+        isPlaying = true;
+        document.getElementById('btn-' + current).innerHTML = '&#9646;&#9646;';
+        document.getElementById('eq-' + current).classList.remove('paused');
+        document.getElementById('mainBtn').innerHTML = '&#9646;&#9646;';
+      }
+    }
+
+    function nextTrack() { playTrack((current + 1) % TRACKS.length); }
+    function prevTrack() { playTrack((current - 1 + TRACKS.length) % TRACKS.length); }
+    function setVol(v) { TRACKS.forEach(t => { document.getElementById('audio-' + t.id).volume = v; }); }
+
+    // Autoplay overlay
+    document.getElementById('enterBtn').addEventListener('click', () => {
+      const ov = document.getElementById('apOverlay');
+      ov.classList.add('hidden');
+      setTimeout(() => ov.remove(), 700);
+      playTrack(0);
+    });
+
+  </script>
+</body>
+
+</html>
